@@ -33,7 +33,7 @@ import {HTMLMathItem} from '../../../handlers/html/HTMLMathItem.js';
 import {browserAdaptor} from '../../../adaptors/browserAdaptor.js';
 import {MmlNode} from '../../../core/MmlTree/MmlNode.js';
 import {MathJax} from '../../../mathjax.js';
-import {RegisterHTMLHandler} from '../../../handlers/html.js';
+import {HTMLHandler} from '../../../handlers/html/HTMLHandler.js';
 import {chooseAdaptor} from '../../../adaptors/chooseAdaptor.js';
 import {Property, PropertyList} from '../../../core/Tree/Node.js';
 
@@ -56,9 +56,8 @@ import {Property, PropertyList} from '../../../core/Tree/Node.js';
  *  bounding box computation.
  */
 const adaptor: any = chooseAdaptor();
-RegisterHTMLHandler(adaptor);
 const jax = new CHTML();
-const doc = MathJax.document('<html></html>', {
+const doc = (new HTMLHandler(adaptor)).create('<html></html>', {
   OutputJax: jax
 });
 let item: any = null;
